@@ -1,0 +1,15 @@
+{
+  "name": "spectral-paint-lab",
+  "version": "0.1.0",
+  "description": "车漆光谱比色工具：色卡/配方存光谱反射率，多光源渲染比色，CIEDE2000 差异报告",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "tsc -p tsconfig.json && node --test \"dist/test/*.test.js\"",
+    "serve": "node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^5.5.0"
+  }
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>车漆光谱比色实验室</title>
+<style>
+  :root {
+    --bg: #16181d; --panel: #1f232b; --line: #2c313b;
+    --fg: #d7dae0; --dim: #8a90a0; --accent: #4da3ff;
+    --ok: #4cc38a; --warn: #e5b567; --bad: #e5636f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 14px/1.5 system-ui, "Microsoft YaHei", sans-serif;
+  }
+  header {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    padding: 12px 20px; border-bottom: 1px solid var(--line);
+  }
+  header h1 { font-size: 17px; margin: 0; }
+  #illuminants { display: flex; gap: 8px; }
+  #illuminants button {
+    background: var(--panel); color: var(--fg); border: 1px solid var(--line);
+    border-radius: 6px; padding: 6px 14px; cursor: pointer; font-size: 13px;
+  }
+  #illuminants button.active { border-color: var(--accent); color: var(--accent); }
+  main {
+    display: grid; gap: 14px; padding: 14px 20px;
+    grid-template-columns: 240px 300px 1fr;
+  }
+  @media (max-width: 1100px) { main { grid-template-columns: 1fr; } }
+  section {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 14px;
+  }
+  section h2 { font-size: 13px; color: var(--dim); margin: 0 0 10px; font-weight: 600; }
+  #cards { display: flex; flex-direction: column; gap: 6px; }
+  .card {
+    display: grid; grid-template-columns: 30px 1fr; grid-template-rows: auto auto;
+    column-gap: 10px; align-items: center; text-align: left;
+    background: none; border: 1px solid transparent; border-radius: 8px;
+    padding: 6px; color: var(--fg); cursor: pointer;
+  }
+  .card:hover { background: #262b34; }
+  .card.active { border-color: var(--accent); }
+  .card .sw { grid-row: span 2; width: 30px; height: 30px; border-radius: 6px; border: 1px solid #0006; }
+  .card .nm { font-size: 13px; }
+  .card .nt { font-size: 11px; color: var(--dim); }
+  .slider-row {
+    display: grid; grid-template-columns: 16px 64px 1fr 44px;
+    align-items: center; gap: 8px; margin: 6px 0; font-size: 12px;
+  }
+  .slider-row .dot { width: 12px; height: 12px; border-radius: 50%; border: 1px solid #0008; }
+  .slider-row .dot.none { visibility: hidden; }
+  .slider-row .val { text-align: right; color: var(--dim); font-variant-numeric: tabular-nums; }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  #panels {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    cursor: ew-resize; user-select: none; touch-action: none;
+  }
+  #panels figure { margin: 0; }
+  #panels canvas {
+    width: 100%; border-radius: 8px; display: block;
+    border: 1px solid var(--line);
+  }
+  #panels figcaption { text-align: center; font-size: 12px; color: var(--dim); padding-top: 6px; }
+  .hint { font-size: 12px; color: var(--dim); margin: 8px 2px 0; }
+  #chart { width: 100%; height: 220px; color: var(--dim); }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 4px; }
+  th, td { padding: 5px 8px; text-align: right; border-bottom: 1px solid var(--line); }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--dim); font-weight: 600; }
+  tr.primary td { background: #4da3ff14; }
+  .ok { color: var(--ok); } .warn { color: var(--warn); } .bad { color: var(--bad); }
+  #report p { font-size: 12.5px; margin: 8px 0 0; color: var(--fg); }
+  .right-col { display: flex; flex-direction: column; gap: 14px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>车漆光谱比色实验室</h1>
+  <div id="illuminants"></div>
+  <span class="hint">色卡与配方全部存光谱反射率（400–700nm），换光源 = 光谱 × SPD 重算，不是 RGB 近似。</span>
+</header>
+<main>
+  <section>
+    <h2>色卡库</h2>
+    <div id="cards"></div>
+  </section>
+
+  <section>
+    <h2>配方（重量份）</h2>
+    <div id="pigment-sliders"></div>
+    <h2 style="margin-top:14px">效应层</h2>
+    <div id="effect-sliders"></div>
+  </section>
+
+  <div class="right-col">
+    <section>
+      <h2>渲染比色（在面板上左右拖动改变视角：<span id="view-angle">0°</span>，看铝片闪烁与翻转效应）</h2>
+      <div id="panels">
+        <figure>
+          <canvas id="panel-target" width="360" height="240"></canvas>
+          <figcaption>目标色卡</figcaption>
+        </figure>
+        <figure>
+          <canvas id="panel-sample" width="360" height="240"></canvas>
+          <figcaption>当前配方</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section>
+      <h2>光谱反射率曲线（灰底 = 当前光源 SPD）</h2>
+      <canvas id="chart" width="720" height="220"></canvas>
+    </section>
+    <section>
+      <h2>差异报告（CIEDE2000）</h2>
+      <div id="report"></div>
+    </section>
+  </div>
+</main>
+<script type="module" src="./dist/src/main.js"></script>
+</body>
+</html>
