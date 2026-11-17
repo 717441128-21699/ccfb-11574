@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>多语言文本溢出检查器</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div id="app">
+    <header id="toolbar">
+      <span class="brand">L10n 溢出检查</span>
+      <button id="btn-load-layout">导入布局 JSON</button>
+      <button id="btn-load-table">导入文本表 CSV</button>
+      <button id="btn-load-fonts">导入字体</button>
+      <button id="btn-demo">加载演示数据</button>
+      <button id="btn-stress">生成 3000 界面压测</button>
+      <button id="btn-run" class="primary" disabled>运行检查</button>
+      <button id="btn-export" disabled>导出报告 CSV</button>
+      <span id="data-status"></span>
+    </header>
+
+    <section id="config-bar">
+      <fieldset>
+        <legend>变量代入(最坏情况)</legend>
+        <label>玩家名 <input id="var-player" value="ＷｉｄｅｓｔＰｌａｙｅｒＮａｍｅ" size="14" /></label>
+        <label>数字 <input id="var-count" value="9,999,999" size="8" /></label>
+        <label>自定义 <input id="var-extra" placeholder='{"lv":"120"}' size="16" /></label>
+      </fieldset>
+      <fieldset>
+        <legend>排版参数</legend>
+        <label>行距 <input id="opt-leading" type="number" value="1.25" step="0.05" min="1" max="2" /></label>
+        <label>图标宽/字号 <input id="opt-icon" type="number" value="1.0" step="0.1" min="0.2" max="3" /></label>
+        <label><input id="opt-boxes" type="checkbox" checked /> 显示控件框</label>
+      </fieldset>
+      <fieldset id="lang-fieldset">
+        <legend>语言(勾选参与检查)</legend>
+        <span id="lang-list">未加载文本表</span>
+      </fieldset>
+      <div id="progress-wrap" hidden>
+        <progress id="progress" value="0" max="100"></progress>
+        <span id="progress-text"></span>
+      </div>
+    </section>
+
+    <main id="main">
+      <aside id="screen-panel">
+        <div class="panel-title">界面 <span id="screen-count"></span></div>
+        <input id="screen-filter" placeholder="过滤…" />
+        <ul id="screen-list"></ul>
+      </aside>
+      <section id="canvas-panel">
+        <div id="canvas-grid"><p class="hint">导入数据并运行检查后,此处按语言并排渲染选中界面。</p></div>
+      </section>
+      <aside id="issue-panel">
+        <div class="panel-title">问题 <span id="issue-count"></span>
+          <select id="issue-filter">
+            <option value="">全部类型</option>
+            <option value="overflow-x">横向溢出</option>
+            <option value="overflow-y">纵向溢出/截断</option>
+            <option value="overlap">控件交叠</option>
+            <option value="missing-glyph">缺字形</option>
+            <option value="missing-key">缺翻译键</option>
+          </select>
+        </div>
+        <table id="issue-table">
+          <thead><tr><th>界面</th><th>语言</th><th>控件</th><th>类型</th><th>文本表行</th><th>详情</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </aside>
+    </main>
+
+    <input type="file" id="file-layout" accept=".json" hidden />
+    <input type="file" id="file-table" accept=".csv,.tsv,.txt" hidden />
+    <input type="file" id="file-fonts" accept=".ttf,.otf,.woff,.woff2" multiple hidden />
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

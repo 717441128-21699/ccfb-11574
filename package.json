@@ -1,0 +1,17 @@
+{
+  "name": "l10n-overflow-checker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "check": "tsc --noEmit",
+    "test": "esbuild test/smoke.ts --bundle --format=esm --platform=node --outfile=test/smoke.mjs && node test/smoke.mjs",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "vite": "^5.4.0"
+  }
+}

@@ -1,0 +1,120 @@
+:root {
+  color-scheme: dark;
+  --bg: #14171f;
+  --panel: #1c2029;
+  --border: #2c3242;
+  --text: #dfe3ec;
+  --dim: #8b93a7;
+  --accent: #4f8cff;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font: 13px/1.5 "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#app { display: flex; flex-direction: column; height: 100vh; }
+
+/* 工具栏 */
+#toolbar {
+  display: flex; gap: 8px; align-items: center;
+  padding: 8px 12px; background: var(--panel); border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.brand { font-weight: 700; margin-right: 8px; color: var(--accent); }
+button {
+  background: #262c3a; color: var(--text); border: 1px solid var(--border);
+  border-radius: 4px; padding: 5px 12px; cursor: pointer; font-size: 13px;
+}
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button:disabled { opacity: 0.45; cursor: default; }
+#data-status { margin-left: auto; color: var(--dim); font-size: 12px; }
+
+/* 配置栏 */
+#config-bar {
+  display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  padding: 6px 12px; border-bottom: 1px solid var(--border); background: #181c26;
+}
+fieldset {
+  border: 1px solid var(--border); border-radius: 4px; padding: 2px 10px 6px;
+  display: flex; gap: 10px; align-items: center; margin: 0;
+}
+legend { color: var(--dim); font-size: 11px; padding: 0 4px; }
+input[type="text"], input[type="number"], input:not([type]) {
+  background: #10131a; color: var(--text); border: 1px solid var(--border);
+  border-radius: 3px; padding: 2px 6px; width: auto;
+}
+input[type="number"] { width: 52px; }
+#lang-list { display: flex; gap: 8px; flex-wrap: wrap; }
+#progress-wrap { display: flex; gap: 8px; align-items: center; }
+progress { width: 180px; }
+
+/* 主区三栏 */
+#main { flex: 1; display: flex; min-height: 0; }
+#screen-panel {
+  width: 220px; border-right: 1px solid var(--border); background: var(--panel);
+  display: flex; flex-direction: column; min-height: 0;
+}
+.panel-title {
+  padding: 8px 10px; font-weight: 600; border-bottom: 1px solid var(--border);
+  display: flex; gap: 8px; align-items: center;
+}
+#screen-filter { margin: 6px 8px; width: calc(100% - 16px); }
+#screen-list {
+  list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1;
+}
+#screen-list li {
+  padding: 5px 10px; cursor: pointer; display: flex; justify-content: space-between;
+  gap: 6px; border-bottom: 1px solid #222839;
+}
+#screen-list li:hover { background: #232938; }
+#screen-list li.selected { background: #2a3148; }
+.badge {
+  background: #d4380d; color: #fff; border-radius: 8px; font-size: 11px;
+  padding: 0 6px; line-height: 16px; height: 16px; align-self: center;
+}
+.ok { color: #52c41a; }
+
+/* 画布区 */
+#canvas-panel { flex: 1; overflow: auto; padding: 12px; min-width: 0; }
+#canvas-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 14px;
+}
+#canvas-grid .hint { color: var(--dim); }
+#canvas-grid figure {
+  margin: 0; background: var(--panel); border: 1px solid var(--border);
+  border-radius: 6px; overflow: hidden;
+}
+#canvas-grid figcaption { padding: 6px 10px; border-bottom: 1px solid var(--border); }
+#canvas-grid canvas { width: 100%; display: block; }
+
+/* 问题表 */
+#issue-panel {
+  width: 460px; border-left: 1px solid var(--border); background: var(--panel);
+  display: flex; flex-direction: column; min-height: 0;
+}
+#issue-panel select { background: #10131a; color: var(--text); border: 1px solid var(--border); }
+#issue-table { border-collapse: collapse; width: 100%; font-size: 12px; }
+#issue-table thead th {
+  position: sticky; top: 0; background: #232938; text-align: left;
+  padding: 4px 6px; border-bottom: 1px solid var(--border);
+}
+#issue-panel { overflow-y: auto; }
+#issue-table td {
+  padding: 3px 6px; border-bottom: 1px solid #222839; vertical-align: top;
+}
+#issue-table tbody tr { cursor: pointer; }
+#issue-table tbody tr:hover { background: #232938; }
+tr.t-overflow-x td:nth-child(4) { color: #ff4d4f; }
+tr.t-overflow-y td:nth-child(4) { color: #ff7a45; }
+tr.t-overlap td:nth-child(4) { color: #f759ab; }
+tr.t-missing-glyph td:nth-child(4) { color: #faad14; }
+tr.t-missing-key td:nth-child(4) { color: #9254de; }
