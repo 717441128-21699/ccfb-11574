@@ -1,0 +1,26 @@
+{
+  "name": "game-i18n-overflow-checker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Multilingual game UI text-overflow checker: canvas-faithful layout, font fallback, RTL/complex-script aware, batch detection across languages.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "benchmark": "vite-node bench/stress.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vite-node": "^2.1.9",
+    "vitest": "^2.1.5"
+  },
+  "allowScripts": {
+    "esbuild@0.21.5": true
+  }
+}

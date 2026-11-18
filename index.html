@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>游戏多语言文字溢出排查工具</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="toolbar">
+        <h1>🎮 多语言溢出排查</h1>
+        <label class="file-btn"><input type="file" id="file-screens" accept=".json" /><button id="btn-import-screens" type="button">导入布局</button></label>
+        <label class="file-btn"><input type="file" id="file-table" accept=".csv,.json" /><button id="btn-import-table" type="button">导入文本表</button></label>
+        <button id="btn-run" class="primary" type="button">开始批量检测</button>
+        <button id="btn-cancel" class="danger" type="button" disabled>取消</button>
+        <button id="btn-frames" type="button">隐藏控件框</button>
+        <div class="progress-wrap" id="progress-wrap" style="display:none"><div class="progress-bar" id="progress-bar" style="width:0"></div></div>
+        <span class="progress-text" id="progress-text"></span>
+        <div class="stats-row" id="stats" style="padding:0"></div>
+      </div>
+      <div class="error-banner" id="error-banner" style="display:none"></div>
+      <div class="main">
+        <div class="sidebar" id="sidebar"></div>
+        <div class="canvas-area" id="canvas-area"></div>
+        <div class="sidebar right" id="issue-panel"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

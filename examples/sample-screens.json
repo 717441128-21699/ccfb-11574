@@ -1,0 +1,95 @@
+[
+  {
+    "id": "shop",
+    "name": "商店主界面",
+    "canvasSize": { "width": 720, "height": 480 },
+    "controls": [
+      {
+        "id": "shop_title",
+        "type": "label",
+        "rect": { "x": 40, "y": 24, "width": 400, "height": 36 },
+        "textKey": "shop_title",
+        "style": { "fontSize": 26, "fontWeight": 700 }
+      },
+      {
+        "id": "shop_buy_btn",
+        "type": "button",
+        "rect": { "x": 40, "y": 380, "width": 180, "height": 48 },
+        "textKey": "shop_buy_now",
+        "textFrameInset": 12,
+        "style": {
+          "fontSize": 18,
+          "fontWeight": 600,
+          "overflow": "ellipsis",
+          "maxLines": 1,
+          "align": "center",
+          "verticalAlign": "middle"
+        }
+      },
+      {
+        "id": "shop_gift_btn",
+        "type": "button",
+        "rect": { "x": 240, "y": 380, "width": 180, "height": 48 },
+        "textKey": "shop_send_gift",
+        "textFrameInset": 12,
+        "style": {
+          "fontSize": 18,
+          "fontWeight": 600,
+          "overflow": "ellipsis",
+          "maxLines": 1,
+          "align": "center",
+          "verticalAlign": "middle"
+        }
+      },
+      {
+        "id": "shop_price",
+        "type": "label",
+        "rect": { "x": 460, "y": 392, "width": 220, "height": 28 },
+        "textKey": "shop_price_label",
+        "style": { "fontSize": 16, "overflow": "wrap", "maxLines": 1 }
+      }
+    ]
+  },
+  {
+    "id": "reward",
+    "name": "奖励弹窗",
+    "canvasSize": { "width": 720, "height": 480 },
+    "controls": [
+      {
+        "id": "reward_title",
+        "type": "label",
+        "rect": { "x": 60, "y": 60, "width": 600, "height": 40 },
+        "textKey": "reward_title",
+        "style": {
+          "fontSize": 24,
+          "fontWeight": 700,
+          "align": "center",
+          "overflow": "ellipsis",
+          "maxLines": 1
+        }
+      },
+      {
+        "id": "reward_desc",
+        "type": "label",
+        "rect": { "x": 80, "y": 130, "width": 560, "height": 90 },
+        "textKey": "reward_desc",
+        "style": { "fontSize": 17, "overflow": "wrap", "lineHeight": 24 }
+      },
+      {
+        "id": "reward_claim",
+        "type": "button",
+        "rect": { "x": 270, "y": 380, "width": 180, "height": 50 },
+        "textKey": "reward_claim",
+        "textFrameInset": 12,
+        "style": {
+          "fontSize": 18,
+          "fontWeight": 600,
+          "align": "center",
+          "verticalAlign": "middle",
+          "overflow": "ellipsis",
+          "maxLines": 1
+        }
+      }
+    ]
+  }
+]

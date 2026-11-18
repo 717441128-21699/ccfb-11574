@@ -1,0 +1,8 @@
+key,zh,en,de,ja,ko,th,hi,ar
+shop_title,限时特惠商店,Limited-Time Offers,Zeitlich begrenzte Sonderangebote,期間限定ショップ,한정 특별 상점,ร้านค้าข้อเสนอพิเศษจำกัดเวลา,"सीमित-समय विशेष ऑफ़र स्टोर",متجر العروض الخاصة لفترة محدودة
+shop_buy_now,立即购买,Buy Now,Sofort kaufen,今すぐ購入,지금 구매,ซื้อตอนนี้,अभी खरीदें,اشترِ الآن
+shop_send_gift,赠送好友,Send as Gift,Als Geschenk versenden,ギフトとして送る,선물로 보내기,ส่งเป็นของขวัญให้เพื่อน,उपहार के रूप में भेजें,إرسال كهدية إلى صديق
+shop_price_label,价格：{price} 金币 <icon=coin/>,Price: {price} coins <icon=coin/>,Preis: {price} Goldmünzen <icon=coin/>,価格：{price}コイン <icon=coin/>,가격: {price} 코인 <icon=coin/>,ราคา: {price} เหรียญ <icon=coin/>,मूल्य: {price} सिक्के <icon=coin/>,السعر: {price} عملات ذهبية <icon=coin/>
+reward_title,恭喜获得奖励,Rewards Unlocked,Belohnungen freigeschaltet,報酬を獲得しました,보상을 획득했습니다,คุณได้รับรางวัลแล้ว,आपने पुरस्कार अनलॉक किए,تم فتح المكافآت
+reward_desc,"{player}，你获得了 <color=#66ff99>{amount}</color> 点经验和 {days} 天特权卡。","{player}, you earned <color=#66ff99>{amount}</color> XP and a {days}-day privilege pass.","{player}, du erhältst <color=#66ff99>{amount}</color> EP und eine {days}-Tage-Privilegienkarte.","{player}、<color=#66ff99>{amount}</color> EXPと{days}日間の特権カードを獲得しました。","{player}님, <color=#66ff99>{amount}</color> 경험치와 {days}일 특권 카드를 획득했습니다.","{player} คุณได้รับ <color=#66ff99>{amount}</color> XP และบัตรสิทธิพิเศษ {days} วัน","{player}, आपको <color=#66ff99>{amount}</color> XP और {days}-दिन का विशेषाधिकार कार्ड मिला।","{player}، لقد ربحت <color=#66ff99>{amount}</color> نقطة خبرة وبطاقة امتياز لمدة {days} أيام."
+reward_claim,领取,Claim,Anspruch nehmen,受け取る,받기,รับรางวัล,प्राप्त करें,استلام
